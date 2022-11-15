@@ -1,0 +1,45 @@
+.header-container {
+  background-color: rgb(99 47 83 / 80%);
+}
+
+.column-full {
+  font-family: "The Nautigal", cursive;
+  color: white;
+  font-size: 50px;
+}
+
+h2 {
+  margin-top: 16px;
+  margin-left: 20px;
+}
+
+img {
+  border: 3px black solid;
+  object-fit: cover;
+  height: 285px;
+  max-width: 220px;
+  filter: brightness(116%);
+}
+
+ul {
+  margin: 20px;
+}
+
+li {
+  display: inline-flex;
+  padding: 25px;
+  margin-left: 30px;
+}
+
+.font-fam {
+  font-family: Teko, sans-serif;
+}
+
+.font-fam-two {
+  font-family: Mina, sans-serif;
+}
+
+.lists {
+  width: 200px;
+  margin: 20px;
+}
