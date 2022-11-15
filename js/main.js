@@ -1,42 +1,36 @@
 var $ul = document.querySelector('ul');
 
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://openlibrary.org/search.json?title=book?');
+xhr.open('GET', 'http://openlibrary.org/search.json?subject=thriller');
 xhr.responseType = 'json';
 xhr.addEventListener('load', function () {
-  var response = xhr.response;
-  console.log(xhr.status);
-  console.log(response);
-  list();
-
-});
-xhr.send();
-
-function list() {
   for (var i = 0; i < xhr.response.docs.length; i++) {
     var list = document.createElement('li');
     var $image = document.createElement('img');
     var $div = document.createElement('div');
+    var $divOne = document.createElement('div');
+    var $divTwo = document.createElement('div');
     var $headingThree = document.createElement('h3');
     var $paragraph = document.createElement('p');
     var $paragraphTwo = document.createElement('p');
+    $divOne.setAttribute('class', 'row');
+    $divTwo.setAttribute('class', 'column-half');
     $ul.appendChild(list);
-    list.appendChild($image);
-    list.appendChild($div);
+    list.appendChild($divOne);
+    $divOne.appendChild($image);
+    $divOne.appendChild($divTwo);
+    $divTwo.appendChild($div);
     $div.appendChild($headingThree);
     $div.appendChild($paragraph);
     $div.appendChild($paragraphTwo);
-    $image.setAttribute('src', 'https://www.moma.org/interactives/exhibitions/2012/printout/wp-content/uploads/2012/02/PW12-316x400.jpg');
+    $image.setAttribute('src', 'https://covers.openlibrary.org/b/id/' + xhr.response.docs[i].cover_i + '-M.jpg');
+    $div.setAttribute('class', 'lists');
     $headingThree.setAttribute('class', 'font-fam');
     $paragraph.setAttribute('class', 'font-fam-two');
     $paragraphTwo.setAttribute('class', 'font-fam-two');
     $headingThree.textContent = xhr.response.docs[i].title;
-    $paragraph.textContent = xhr.response.docs[i].author_name[0];
-    $paragraphTwo.textContent = 'ISbn#: ' + Number(xhr.response.docs[i].isbn[0]);
+    $paragraph.textContent = xhr.response.docs[i].author_name;
+    $paragraphTwo.textContent = 'Isbn#: ' + xhr.response.docs[i].isbn[0];
   }
-}
-
-// for (var i = 0; i < this.response.docs.length; i++) {
-//   var response = xhr.response.docs[i].title;
-//   console.log(response);
-// }
+});
+xhr.send();
