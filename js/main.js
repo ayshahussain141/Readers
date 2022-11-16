@@ -7,7 +7,6 @@ xhr.addEventListener('load', function (event) {
   for (var i = 0; i < xhr.response.docs.length; i++) {
     data.books.push(xhr.response.docs[i]);
     $ul.appendChild(list(xhr.response.docs[i]));
-    data.bookId++;
   }
 
 }
@@ -17,7 +16,7 @@ xhr.send();
 
 function list(book) {
   var list = document.createElement('li');
-  list.setAttribute('event-Id', data.bookId);
+  list.setAttribute('event-Id', book.key);
   var $image = document.createElement('img');
   var $div = document.createElement('div');
   var $divOne = document.createElement('div');
@@ -59,20 +58,25 @@ $ul.addEventListener('click', function (event) {
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
-  var clickedIndex = parseInt(event.target.closest('li').getAttribute('event-Id')) - 1;
-  var authorName = data.books[clickedIndex].author_name;
-  var isbn = data.books[clickedIndex].isbn[0];
-  var title = data.books[clickedIndex].title;
-  var url = 'https://covers.openlibrary.org/b/id/' + data.books[clickedIndex].cover_i + '-M.jpg';
+  var listKey = event.target.closest('li').getAttribute('event-Id');
+  for (var i = 0; i < data.books.length; i++) {
+    if (data.books[i].key === listKey) {
+      var key = data.books[i].key;
+      var authorName = data.books[i].author_name;
+      var isbn = data.books[i].isbn[0];
+      var title = data.books[i].title;
+      var url = 'https://covers.openlibrary.org/b/id/' + data.books[i].cover_i + '-M.jpg';
+    }
+  }
   var object = {};
   object.authorName = authorName;
   object.isbn = isbn;
   object.title = title;
   object.url = url;
-  object.index = clickedIndex;
+  object.key = key;
+  object.listsKey = listKey;
   data.entries.push(object);
   event.target.className = 'button-added';
   event.target.textContent = 'Added';
 }
-
 );

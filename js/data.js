@@ -2,8 +2,7 @@
 var data = {
   books: [],
   view: 'book-list',
-  entries: [],
-  bookId: 1
+  entries: []
 };
 
 var word = localStorage.getItem('javascript-storage-list');
