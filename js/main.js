@@ -8,7 +8,9 @@ xhr.addEventListener('load', function (event) {
     data.books.push(xhr.response.docs[i]);
     $ul.appendChild(list(xhr.response.docs[i]));
   }
-
+  for (var a = 0; a < data.entries.length; a++) {
+    readinglist(data.entries[a]);
+  }
 }
 
 );
@@ -80,3 +82,41 @@ $ul.addEventListener('click', function (event) {
   event.target.textContent = 'Added';
 }
 );
+
+var $readingList = document.querySelector('.readinglist-ul');
+
+function readinglist(entries) {
+  var list = document.createElement('li');
+  list.setAttribute('event-Id', entries.key);
+  var $image = document.createElement('img');
+  var $div = document.createElement('div');
+  var $divOne = document.createElement('div');
+  var $divTwo = document.createElement('div');
+  var $headingThree = document.createElement('h3');
+  var $paragraph = document.createElement('p');
+  var $paragraphTwo = document.createElement('p');
+
+  $divOne.setAttribute('class', 'row width');
+  $divTwo.setAttribute('class', 'column-full');
+  $readingList.appendChild(list);
+
+  list.appendChild($divOne);
+  $divOne.appendChild($image);
+  $divOne.appendChild($divTwo);
+  $divTwo.appendChild($div);
+  $div.appendChild($headingThree);
+  $div.appendChild($paragraph);
+  $div.appendChild($paragraphTwo);
+
+  $image.setAttribute('src', entries.url);
+  $div.setAttribute('class', 'lists');
+  $headingThree.setAttribute('class', 'font-fam');
+  $paragraph.setAttribute('class', 'font-fam-two');
+  $paragraphTwo.setAttribute('class', 'font-fam-two');
+
+  $headingThree.textContent = entries.title;
+  $paragraph.textContent = entries.authorName;
+  $paragraphTwo.textContent = 'Isbn#: ' + entries.isbn;
+
+  return list;
+}

@@ -18,18 +18,34 @@
   <header>
     <div class="header-container">
       <div class="header-row">
-        <div class="column-full">
+        <div class="column-one-half">
           <h2>Readers</h2>
+        </div>
+        <div class="column-one-half font-fam-two">
+          <h6>Reading List</h6>
         </div>
       </div>
     </div>
   </header>
   <main>
-    <div data-view="book-list">
+    <div data-view="book-list" class="hidden">
       <div class="container">
         <ul>
         </ul>
       </div>
+    </div>
+
+    <div data-view="reading-list" class="visible">
+      <div class="container">
+        <div class="row">
+          <div class="column-full">
+            <h1 class="list-page font-fam-two">Reading List</h1>
+          </div>
+        </div>
+        <ul class="readinglist-ul">
+        </ul>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
