@@ -57,6 +57,7 @@ function list(book) {
 }
 
 $ul.addEventListener('click', function (event) {
+  event.preventDefault();
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
@@ -120,3 +121,32 @@ function readinglist(entries) {
 
   return list;
 }
+
+var $listFav = document.querySelector('#favorite-list');
+var $apiList = document.querySelector('#api-list');
+
+function viewSwap(string) {
+  data.view = string;
+  if (string === 'book-list') {
+    $apiList.className = 'visible';
+    $listFav.className = 'hidden';
+  } else if (string === 'reading-list') {
+    $listFav.className = 'visible';
+    $apiList.className = 'hidden';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  viewSwap(data.view);
+});
+
+var readingButton = document.querySelector('.reading-page');
+var bookButton = document.querySelector('.book-page');
+
+bookButton.addEventListener('click', function () {
+  viewSwap('book-list');
+});
+
+readingButton.addEventListener('click', function () {
+  viewSwap('reading-list');
+});

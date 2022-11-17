@@ -87,3 +87,15 @@ li {
   width: 700px;
   justify-content: end;
 }
+
+.margin-top {
+  margin-top: 20px;
+}
+
+a {
+  color: white;
+  margin: 20px;
+  position: relative;
+  top: -17px;
+  text-decoration: none;
+}
