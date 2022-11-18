@@ -2,15 +2,25 @@
   background-color: rgb(99 47 83 / 80%);
 }
 
-.column-full {
-  font-family: "The Nautigal", cursive;
-  color: white;
-  font-size: 50px;
+.header-row {
+  align-items: flex-end;
 }
 
-h2 {
+.column-one-half > h2 {
+  font-family: "The Nautigal", cursive;
+  color: white;
+  font-size: 80px;
   margin-top: 16px;
   margin-left: 20px;
+  display: inline;
+  font-weight: 300;
+}
+
+.column-one-half > h6 {
+  display: inline;
+  color: white;
+  font-size: 15px;
+  margin-right: 50px;
 }
 
 img {
@@ -53,6 +63,7 @@ li {
   font-family: Mina, sans-serif;
   font-size: 11px;
   font-weight: 800;
+  cursor: pointer;
 }
 
 .button-added {
@@ -64,4 +75,26 @@ li {
   font-family: Mina, sans-serif;
   font-size: 11px;
   font-weight: 800;
+}
+
+.list-page {
+  font-weight: 900;
+  margin-left: 40px;
+}
+
+.width {
+  width: 700px;
+  justify-content: end;
+}
+
+.margin-top {
+  margin-top: 20px;
+}
+
+a {
+  color: white;
+  margin: 20px;
+  position: relative;
+  top: -17px;
+  text-decoration: none;
 }
