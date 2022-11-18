@@ -36,6 +36,11 @@
     width: 1100px;
   }
 
+  .list-page {
+    position: relative;
+    left: 200px;
+  }
+
   .row {
     flex-direction: row;
   }

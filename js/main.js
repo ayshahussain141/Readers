@@ -1,3 +1,7 @@
+var bookList = {
+  books: []
+};
+
 var $ul = document.querySelector('ul');
 var targetUrl = encodeURIComponent('http://openlibrary.org/search.json?subject=thriller');
 var xhr = new XMLHttpRequest();
@@ -5,15 +9,14 @@ xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
 xhr.responseType = 'json';
 xhr.addEventListener('load', function (event) {
   for (var i = 0; i < xhr.response.docs.length; i++) {
-    data.books.push(xhr.response.docs[i]);
+    bookList.books.push(xhr.response.docs[i]);
     $ul.appendChild(list(xhr.response.docs[i]));
   }
   for (var a = 0; a < data.entries.length; a++) {
     readinglist(data.entries[a]);
   }
-}
 
-);
+});
 xhr.send();
 
 function list(book) {
@@ -52,24 +55,31 @@ function list(book) {
   var $addButton = document.createElement('button');
   $addButton.setAttribute('class', 'button-add');
   $addButton.textContent = 'ADD';
+  for (var i = 0; i < data.entries.length; i++) {
+    if (book.key === data.entries[i].key) {
+      $addButton.setAttribute('class', 'button-added');
+      $addButton.textContent = 'Added ';
+    }
+  }
   $div.appendChild($addButton);
   return list;
 }
 
 $ul.addEventListener('click', function (event) {
-  event.preventDefault();
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
   var listKey = event.target.closest('li').getAttribute('event-Id');
-  for (var i = 0; i < data.books.length; i++) {
-    if (data.books[i].key === listKey) {
-      var key = data.books[i].key;
-      var authorName = data.books[i].author_name;
-      var isbn = data.books[i].isbn[0];
-      var title = data.books[i].title;
-      var url = 'https://covers.openlibrary.org/b/id/' + data.books[i].cover_i + '-M.jpg';
+  for (var i = 0; i < bookList.books.length; i++) {
+    if (bookList.books[i].key === listKey) {
+      var key = bookList.books[i].key;
+      var authorName = bookList.books[i].author_name;
+      var isbn = bookList.books[i].isbn[0];
+      var title = bookList.books[i].title;
+      var url = 'https://covers.openlibrary.org/b/id/' + bookList.books[i].cover_i + '-M.jpg';
+
     }
+
   }
   var object = {};
   object.authorName = authorName;
@@ -78,16 +88,18 @@ $ul.addEventListener('click', function (event) {
   object.url = url;
   object.key = key;
   object.listsKey = listKey;
-  data.entries.push(object);
-  event.target.className = 'button-added';
   event.target.textContent = 'Added';
+  event.target.className = 'button-added';
+  data.entries.push(object);
+  $readingList.appendChild((readinglist(object)));
+
 }
 );
 
 var $readingList = document.querySelector('.readinglist-ul');
-
 function readinglist(entries) {
   var list = document.createElement('li');
+  list.setAttribute('class', 'fave-list');
   list.setAttribute('event-Id', entries.key);
   var $image = document.createElement('img');
   var $div = document.createElement('div');
@@ -125,28 +137,30 @@ function readinglist(entries) {
 var $listFav = document.querySelector('#favorite-list');
 var $apiList = document.querySelector('#api-list');
 
-function viewSwap(string) {
-  data.view = string;
+function viewSwap() {
+  var string = data.view;
   if (string === 'book-list') {
-    $apiList.className = 'visible';
     $listFav.className = 'hidden';
-  } else if (string === 'reading-list') {
-    $listFav.className = 'visible';
+    $apiList.className = 'view';
+  }
+  if (string === 'reading-list') {
+    $listFav.className = 'view';
     $apiList.className = 'hidden';
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  viewSwap(data.view);
+document.addEventListener('DOMContentLoaded', function (event) {
+  viewSwap();
 });
 
 var readingButton = document.querySelector('.reading-page');
 var bookButton = document.querySelector('.book-page');
-
-bookButton.addEventListener('click', function () {
-  viewSwap('book-list');
+bookButton.addEventListener('click', function (event) {
+  data.view = 'book-list';
+  viewSwap();
 });
 
-readingButton.addEventListener('click', function () {
-  viewSwap('reading-list');
+readingButton.addEventListener('click', function (event) {
+  data.view = 'reading-list';
+  viewSwap();
 });

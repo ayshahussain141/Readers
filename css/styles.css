@@ -63,6 +63,7 @@ li {
   font-family: Mina, sans-serif;
   font-size: 11px;
   font-weight: 800;
+  cursor: pointer;
 }
 
 .button-added {
@@ -78,9 +79,7 @@ li {
 
 .list-page {
   font-weight: 900;
-  text-align: center;
-  position: relative;
-  left: 200px;
+  margin-left: 40px;
 }
 
 .width {

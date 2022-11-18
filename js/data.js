@@ -1,18 +1,17 @@
 /* exported data */
 var data = {
-  books: [],
   view: 'book-list',
   entries: []
 };
 
 var word = localStorage.getItem('javascript-storage-list');
 if (word !== null) {
-  data.entries = JSON.parse(word);
+  data = JSON.parse(word);
 }
 
 window.addEventListener('beforeunload', function (event) {
 
-  var dataJSON = JSON.stringify(data.entries);
+  var dataJSON = JSON.stringify(data);
   localStorage.setItem('javascript-storage-list', dataJSON);
 
 });
