@@ -100,7 +100,7 @@ var $readingList = document.querySelector('.readinglist-ul');
 function readinglist(entries) {
   var list = document.createElement('li');
   list.setAttribute('class', 'fave-list');
-  list.setAttribute('event-Id', entries.key);
+  list.setAttribute('book-Id', entries.key);
   var $image = document.createElement('img');
   var $div = document.createElement('div');
   var $divOne = document.createElement('div');
@@ -130,6 +130,11 @@ function readinglist(entries) {
   $headingThree.textContent = entries.title;
   $paragraph.textContent = entries.authorName;
   $paragraphTwo.textContent = 'Isbn#: ' + entries.isbn;
+
+  var $addButton = document.createElement('button');
+  $addButton.setAttribute('class', 'remove-button');
+  $addButton.textContent = 'Remove';
+  $div.appendChild($addButton);
 
   return list;
 }
@@ -164,3 +169,19 @@ readingButton.addEventListener('click', function (event) {
   data.view = 'reading-list';
   viewSwap();
 });
+
+$readingList.addEventListener('click', function () {
+  if (event.target.tagName === 'BUTTON') {
+    var list = event.target.closest('li');
+    list.remove();
+  }
+  var three = event.target.closest('li').getAttribute('book-Id');
+  for (var i = 0; i < data.entries.length; i++) {
+    if (three === data.entries[i].key) {
+      data.entries.splice(i, 1);
+
+    }
+  }
+}
+
+);
