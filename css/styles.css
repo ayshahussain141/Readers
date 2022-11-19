@@ -98,3 +98,15 @@ a {
   top: -17px;
   text-decoration: none;
 }
+
+.remove-button {
+  background-color: #b22222;
+  color: white;
+  padding: 5px 28px;
+  border-radius: 1px;
+  border-color: #b22222;
+  font-family: Mina, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
