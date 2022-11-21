@@ -110,3 +110,7 @@ a {
   font-weight: 800;
   cursor: pointer;
 }
+
+input {
+  margin-bottom: 50px;
+}

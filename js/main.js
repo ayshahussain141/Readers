@@ -185,3 +185,16 @@ $readingList.addEventListener('click', function () {
 }
 
 );
+
+var $searchBar = document.querySelector('input');
+
+$searchBar.addEventListener('keyup', function (event) {
+  var inputs = event.target.value.toLowerCase();
+  for (var i = 0; i < bookList.books.length; i++) {
+    if (bookList.books[i].title.includes(inputs)) {
+      console.log(inputs);
+    }
+  }
+}
+
+);
