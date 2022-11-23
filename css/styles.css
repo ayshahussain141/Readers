@@ -111,6 +111,7 @@ a {
   cursor: pointer;
 }
 
+
 form {
   text-align: center;
   margin-top: 20px;
@@ -130,4 +131,5 @@ form {
   border-radius: 10%;
   border-color: rgb(99 47 83 / 80%);
   margin-left: -41px;
+
 }

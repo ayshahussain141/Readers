@@ -200,6 +200,7 @@ $readingList.addEventListener('click', function () {
 
 );
 
+
 var $form = document.querySelector('form');
 
 $form.addEventListener('submit', function () {
@@ -253,4 +254,5 @@ $search.addEventListener('click', function () {
   $readingList.appendChild((readinglist(object)));
 
 }
+
 );
