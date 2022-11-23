@@ -2,7 +2,8 @@ var bookList = {
   books: []
 };
 
-var $ul = document.querySelector('ul');
+var $ul = document.querySelector('#book-list-root');
+var $search = document.querySelector('#search-list-root');
 var targetUrl = encodeURIComponent('http://openlibrary.org/search.json?subject=thriller');
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
@@ -141,16 +142,29 @@ function readinglist(entries) {
 
 var $listFav = document.querySelector('#favorite-list');
 var $apiList = document.querySelector('#api-list');
+var $searchList = document.querySelector('#search-result');
 
 function viewSwap() {
   var string = data.view;
   if (string === 'book-list') {
     $listFav.className = 'hidden';
     $apiList.className = 'view';
+    $searchList.className = 'hidden';
+    $form.className = 'view';
+
   }
   if (string === 'reading-list') {
     $listFav.className = 'view';
     $apiList.className = 'hidden';
+    $searchList.className = 'hidden';
+    $form.className = 'hidden';
+  }
+  if (string === 'search-list') {
+    $listFav.className = 'hidden';
+    $apiList.className = 'hidden';
+    $form.className = 'view';
+    $searchList.className = 'view';
+
   }
 }
 
@@ -184,4 +198,59 @@ $readingList.addEventListener('click', function () {
   }
 }
 
+);
+
+var $form = document.querySelector('form');
+
+$form.addEventListener('submit', function () {
+  event.preventDefault();
+  if ($search.hasChildNodes()) {
+    while ($search.firstChild) {
+      $search.removeChild($search.firstChild);
+    }
+  }
+  var obj = {};
+  obj.search = $form.elements.search.value;
+  for (var i = 0; i < bookList.books.length; i++) {
+    if (bookList.books[i].title.includes(obj.search)) {
+      data.search.push(bookList.books[i]);
+      $search.append(list(bookList.books[i]));
+    }
+  }
+
+  data.view = 'search-list';
+  viewSwap();
+  data.search = [];
+  $form.reset();
+});
+
+$search.addEventListener('click', function () {
+  if (event.target.tagName !== 'BUTTON') {
+    return;
+  }
+  var listKey = event.target.closest('li').getAttribute('event-Id');
+  for (var i = 0; i < bookList.books.length; i++) {
+    if (bookList.books[i].key === listKey) {
+      var key = bookList.books[i].key;
+      var authorName = bookList.books[i].author_name;
+      var isbn = bookList.books[i].isbn[0];
+      var title = bookList.books[i].title;
+      var url = 'https://covers.openlibrary.org/b/id/' + bookList.books[i].cover_i + '-M.jpg';
+
+    }
+
+  }
+  var object = {};
+  object.authorName = authorName;
+  object.isbn = isbn;
+  object.title = title;
+  object.url = url;
+  object.key = key;
+  object.listsKey = listKey;
+  event.target.textContent = 'Added';
+  event.target.className = 'button-added';
+  data.entries.push(object);
+  $readingList.appendChild((readinglist(object)));
+
+}
 );

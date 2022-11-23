@@ -1,7 +1,8 @@
 /* exported data */
 var data = {
   view: 'book-list',
-  entries: []
+  entries: [],
+  search: []
 };
 
 var word = localStorage.getItem('javascript-storage-list');
