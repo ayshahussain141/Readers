@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css2?family=The+Nautigal:wght@700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,9 +24,9 @@
         <div class="column-one-half margin-top">
           <h2>Readers</h2>
         </div>
-        <div class="column-one-half">
-          <input type="text" placeholder="Search..">
-        </div>
+
+
+
         <div class="column-one-half font-fam-two">
           <nav class="menu">
             <a class="reading-page" href="#">Reading List</a>
@@ -35,9 +38,13 @@
     </div>
   </header>
   <main>
+    <form>
+      <input class="search-bar" type="text" placeholder="Search.." name="search">
+      <button class="search-button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
     <div data-view="book-list" class="hidden" id="api-list">
       <div class="container">
-        <ul>
+        <ul id="book-list-root">
         </ul>
       </div>
     </div>
@@ -50,6 +57,13 @@
           </div>
         </div>
         <ul class="readinglist-ul">
+        </ul>
+      </div>
+    </div>
+
+    <div data-view="search-list" id="search-result">
+      <div class="container">
+        <ul id="search-list-root">
         </ul>
       </div>
     </div>
