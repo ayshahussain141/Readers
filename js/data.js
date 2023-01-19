@@ -1,6 +1,6 @@
 /* exported data */
 var data = {
-  view: 'book-list',
+  view: 'reading-list',
   entries: [],
   search: []
 };

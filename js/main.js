@@ -1,7 +1,7 @@
 var bookList = {
   books: []
 };
-
+var $loader = document.querySelector('.loader');
 var $ul = document.querySelector('#book-list-root');
 var $search = document.querySelector('#search-list-root');
 var targetUrl = encodeURIComponent('http://openlibrary.org/search.json?subject=thriller');
@@ -9,6 +9,9 @@ var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
 xhr.responseType = 'json';
 xhr.addEventListener('load', function (event) {
+  if (xhr.status === 200) {
+    $loader.className = 'hidden';
+  }
   for (var i = 0; i < xhr.response.docs.length; i++) {
     bookList.books.push(xhr.response.docs[i]);
     $ul.appendChild(list(xhr.response.docs[i]));
@@ -65,11 +68,12 @@ function list(book) {
   $div.appendChild($addButton);
   return list;
 }
-
+var $message = document.querySelector('.message');
 $ul.addEventListener('click', function (event) {
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
+  $message.className = 'hidden';
   var listKey = event.target.closest('li').getAttribute('event-Id');
   for (var i = 0; i < bookList.books.length; i++) {
     if (bookList.books[i].key === listKey) {
@@ -212,12 +216,13 @@ $form.addEventListener('submit', function () {
   var obj = {};
   obj.search = $form.elements.search.value;
   for (var i = 0; i < bookList.books.length; i++) {
-    if (bookList.books[i].title.includes(obj.search)) {
+    const $books = bookList.books[i].title.toLowerCase();
+    const $booksTwo = bookList.books[i].title;
+    if ($books.includes(obj.search) || $booksTwo.includes(obj.search)) {
       data.search.push(bookList.books[i]);
       $search.append(list(bookList.books[i]));
     }
   }
-
   data.view = 'search-list';
   viewSwap();
   data.search = [];
