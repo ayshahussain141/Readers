@@ -31,11 +31,12 @@
   width: 100%;
 }
 
-@media screen and (min-width: 768px) {
-  .container {
-    width: 1100px;
-  }
+.row-two {
+  display: flex;
+  justify-content: center;
+}
 
+@media screen and (min-width: 999px) {
   .list-page {
     position: relative;
     left: 200px;
@@ -43,6 +44,7 @@
 
   .row {
     flex-direction: row;
+    width: 500px;
   }
 
   .column-half {
