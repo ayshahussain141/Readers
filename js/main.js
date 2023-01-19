@@ -68,11 +68,12 @@ function list(book) {
   $div.appendChild($addButton);
   return list;
 }
-
+var $message = document.querySelector('.message');
 $ul.addEventListener('click', function (event) {
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
+  $message.className = 'hidden';
   var listKey = event.target.closest('li').getAttribute('event-Id');
   for (var i = 0; i < bookList.books.length; i++) {
     if (bookList.books[i].key === listKey) {

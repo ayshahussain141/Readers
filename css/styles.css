@@ -180,3 +180,8 @@ form {
   position: relative;
   top: 200px;
 }
+
+.message {
+  text-align: center;
+  color: rgb(99 47 83 / 80%);
+}
