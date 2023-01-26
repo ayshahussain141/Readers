@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
+  <title>Readers</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -55,9 +55,13 @@
             <h1 class="list-page font-fam-two">Reading List</h1>
           </div>
         </div>
-        <ul class="readinglist-ul">
-        </ul>
-        <h2 class="message"><em>No Books Added to Reading List</em></h2>
+        <div data-view="readings" class="hidden " id="reading-view">
+          <ul class="readinglist-ul">
+          </ul>
+        </div>
+        <div class="visible" id="displayed-message">
+          <p class="message">No books added to Reading List</p>
+        </div>
       </div>
     </div>
 

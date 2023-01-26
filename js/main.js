@@ -4,6 +4,8 @@ var bookList = {
 var $loader = document.querySelector('.loader');
 var $ul = document.querySelector('#book-list-root');
 var $search = document.querySelector('#search-list-root');
+var $reading = document.querySelector('#reading-view');
+var $message = document.querySelector('#displayed-message');
 var targetUrl = encodeURIComponent('http://openlibrary.org/search.json?subject=thriller');
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
@@ -19,10 +21,15 @@ xhr.addEventListener('load', function (event) {
   for (var a = 0; a < data.entries.length; a++) {
     readinglist(data.entries[a]);
   }
-
 });
 xhr.send();
-
+if (data.entries.length === 0) {
+  $reading.className = 'hidden';
+  $message.className = 'view';
+} else {
+  $reading.className = 'view';
+  $message.className = 'hidden';
+}
 function list(book) {
   var list = document.createElement('li');
   list.setAttribute('event-Id', book.key);
@@ -68,12 +75,12 @@ function list(book) {
   $div.appendChild($addButton);
   return list;
 }
-var $message = document.querySelector('.message');
 $ul.addEventListener('click', function (event) {
+  $reading.className = 'view';
+  $message.className = 'hidden';
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
-  $message.className = 'hidden';
   var listKey = event.target.closest('li').getAttribute('event-Id');
   for (var i = 0; i < bookList.books.length; i++) {
     if (bookList.books[i].key === listKey) {
@@ -97,7 +104,6 @@ $ul.addEventListener('click', function (event) {
   event.target.className = 'button-added';
   data.entries.push(object);
   $readingList.appendChild((readinglist(object)));
-
 }
 );
 
@@ -205,7 +211,6 @@ $readingList.addEventListener('click', function () {
 );
 
 var $form = document.querySelector('form');
-
 $form.addEventListener('submit', function () {
   event.preventDefault();
   if ($search.hasChildNodes()) {
