@@ -5,7 +5,7 @@ Readers is a web application for bookworms who want to keep track of the books w
 This application was inspired by goodreads where user can add books they want to read in the future in a reading list.
 
 # Live Link
-https://ayshahussain141.github.io/ajax-project/
+https://ayshahussain141.github.io/Readers/
 # Technologies Used
 HTML
 

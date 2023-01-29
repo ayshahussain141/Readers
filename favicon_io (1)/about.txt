@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: The Nautigal
+- Font Author: Copyright 2013-2021 The The Nautigal Project Authors (https://github.com/googlefonts/the-nautigal)
+- Font Source: http://fonts.gstatic.com/s/thenautigal/v3/VdGZAZ8ZH51Lvng9fQV2bfKr5wVk09Se5Q.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
