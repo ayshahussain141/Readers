@@ -30,12 +30,11 @@ AJAX
 * View book list based on genre
 
 # Getting Started
-index.html
-* css (directory)
-  * styles.css
-* js(directory)
-  * data.js
-  * main.js
+ 1. Clone Repositiry
+ 2. Open the index.html file in your LiveReload server.
+ 3. You're now ready to explore the app!
 
-# Open ibrary
+# Open Library
 Get familiar with Open library
+
+https://openlibrary.org/developers/api
